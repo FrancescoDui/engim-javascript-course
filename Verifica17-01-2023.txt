@@ -1,0 +1,186 @@
+//tempo per la verifica: 3 ore
+//NB gli esercizi non condividono codice o definizioni con gli altri esercizi a meno che non sia dichiarato esplicitamente
+
+//-----------------------------------------------------------------Esercizio 0
+0. Scrivere quali sono i 4 punti fondamentali consigliati per risolvere un algoritmo
+
+1.Sapere cosa fare
+2.Conoscere e possedere gli strumenti
+3.input
+4.output
+
+
+//-----------------------------------------------------------------Esercizio 1
+1. Indicare se i seguenti statement sono corretti oppure errati.
+
+int i='1';			Corretto? N		Perchè? Si sta inizializzando una variabile di tipo intero con un valore di tipo carattere(string)
+int j=1;			Corretto? Y		Perchè? Analogamente a quanto visto sopra si stà inizializzando una variabile di tipo numerico intero con un valore numerico intero
+string s=1;			Corretto? N		Perchè? No perchè il tipo stringa ha bisogno degli apici o delle virgolette per essere interpretato come carattere
+string a=j+'1';		Corretto? N		Perchè? No perchè il tipo stringa ha bisogno degli apici o delle virgolette per essere interpretato come carattere
+object o={'1'};		Corretto? N		Perchè? no perchè essendo un oggetto ha bisogno che ad ogni elemento che è contenuto al suo interno sia associata una chiave,in più non è specificato la tipologia di variabile
+object o='s';		Corretto? N		Perchè? Perchè per gli oggetti bisogna utilizzare le parentesi graffe e le chiavi
+
+function string miafun1 (int par1){			Corretto? N		Perchè?La funzione deve restituire un valore di tipo stringa invece restituisce un valore numerico di tipo intero
+	int a=par1;
+}
+
+function string miafun2 (int par1){			Corretto? N		Perchè?La funzione deve restituire un valore di tipo stringa invece restituisce un valore numerico di tipo intero
+	return par1;
+}
+
+function int miafun (int par1){				Corretto? Y		Perchè?la funzione è di tipo intero e restituisce una valore coerente 
+	return par1;
+}
+
+int b=miafun(9);							Corretto? Y		Perchè?La funzione richiede in input un valore numerico intero
+string c=miafun('1');						Corretto? N		Perchè?La funzione richiede in input un valore numerico intero,in più lafunzionerestiuisce un intero che non è coerente con la dichiarazione della variabile alla quale viene assegnato il valore
+int d=miafun('1');							Corretto? N		Perchè?La funzione richiede in input un valore numerico intero,non una stringa
+
+
+//-----------------------------------------------------------------Esercizio 2
+2. Dato il seguente pseudocodice, cosa restituisce?Restituisce,se il linguaggio permette un cast automatico,una somma di stringhe altrimenti il programma si blocca perchè sto sommando variabili che hanno tipologie differenti
+
+string function miafun(ref int par1, string par2){
+	int ret=0;
+	par1 = par1 + par2;
+	ret= par1 + par2;
+	return ret;
+}
+
+int var1 = 1;
+int var2 = miafun(var1, '2');
+print('var1', var1);			// => cosa scrive?Stampa a schermo: var1 12
+print('var2', var2);			// => cosa scrive?Stampa a schermo: var2 2
+
+//-----------------------------------------------------------------Esercizio 3
+3. Scrivere una funzione che accetti in input un array di interi e restituisca in output la somma di tutti gli elementi che sono pari
+NB: se scrivete il codice in pseudocodice potete usare la funzione isPari(<numero>) che, dato in input un intero, 
+restituisce vero se è pari e falso altrimenti.
+Se invece la scrivete in javascript cercate su google una soluzione.
+
+Esempio:
+INPUT: arrInput=[1,2,6,3,5]
+OUTPUT: ret=8
+Pseudo Codice:
+
+function int isPari(int <array> arrInput){
+    int ret=0;
+    for(int i=0; i!=arrInput.lenght; i++){
+        if(arrInput[i]%2==0)
+            ret=ret+arrInput[i]
+    }
+    return ret
+}
+//-----------------------------------------------------------------Esercizio 4
+4. Vogliamo gestire una statistica dell'andamento degli studenti di una classe.
+Abbiamo a disposizione i dati delle pagelle degli studenti in un formato json come descritto nell'esempio jsonInput.
+Vogliamo in output il resoconto per ogni studente del numero di materie insufficienti e sufficienti (la sufficienza è >= 6).
+I voti sono di tipo intero.
+Scrivere il diagramma di flusso (anche non completo nei dettagli, l'importante è il flusso di massima).
+Scrivere inoltre in javascript una funzione che accetti in input un array di json definito in jsonInput, e restituisca in output 
+un nuovo array di json che contenga per ogni elemento dell'array un json con per ogni studente il suo nome, numero di insifficienze,
+numero di sufficienze
+
+INPUT: jsonInput=[
+{id: 1, studente: "pippo", italiano: 9, storia: 5, geografia: 6, informatica: 8 },
+{id: 1, studente: "pluto", italiano: 4, storia: 2, geografia: 9, informatica: 3 },
+{id: 1, studente: "paperino", italiano: 6, storia: 9, geografia: 4, informatica: 7 },
+{id: 1, studente: "minnie", italiano: 7, storia: 7, geografia: 8, informatica: 6 },
+{id: 1, studente: "paperina", italiano: 4, storia: 6, geografia: 8, informatica: 8 },
+]
+OUTPUT: jsonOutput = [
+{studente: <string>, numero_materie_suff: <int>, numero_materie_insuff: <int>}
+
+Es: jsonOutput = [
+{ studente: "pippo", numero_materie_insuff: 1, numero_materie_suff=3},
+{ studente: "pluto", numero_materie_insuff: 3, numero_materie_suff=1},
+ecc
+]
+Codice Javascript :
+
+let jsonInput=[
+    {'id': 1, 'studente': "pippo", 'italiano': 9, 'storia': 5, 'geografia': 6, 'informatica': 8 },
+    {'id': 1, 'studente': "pluto", 'italiano': 4, 'storia': 2, 'geografia': 9, 'informatica': 3 },
+    {'id': 1, 'studente': "paperino", 'italiano': 6, 'storia': 9, 'geografia': 4, 'informatica': 7 },
+    {'id': 1, 'studente': "minnie", 'italiano': 7, 'storia': 7, 'geografia': 8, 'informatica': 6 },
+    {'id': 1, 'studente': "paperina", 'italiano': 4, 'storia': 6, 'geografia': 8, 'informatica': 8 },
+    ]
+    let jsonOutput=[]
+    for(i=0;i!=jsonInput.lenght;i++){
+    console.log(andamento(jsonInput[i],jsonOutput=[i]));
+    }
+    
+    function andamento (jsonInput,jsonOutput){
+    jsonOutput.nome=jsonInput.studente
+    controllo(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
+    jsonOutput.suff=controllo(jsonInput.italiano,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.storia,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.geografia,jsonOutput.Suff,jsonOutput.InSuff) +controllo(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
+    jsonOutput.insuff=controllo(jsonInput.italiano,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.storia,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.geografia,jsonOutput.Suff,jsonOutput.InSuff) +controllo(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
+    return jsonOutput
+    }
+    
+    
+     function controllo(materia,Suff=0,Insuff=0){
+        if(materia >= 6){
+            Suff=1
+            ret=Suff
+        }
+        else{
+            Insuff=1
+            ret=Insuff
+        }
+    return ret
+     }
+//-----------------------------------------------------------------Esercizio 5
+5. Esercizio sui json e sui dati in javascript
+Data la seguente definizione:
+let myjson={"chiave1": "valorechiave1"}
+
+qual è il valore di:
+
+myjson 						// => qual è il suo valore?  di che tipo è?IL valore è:{"chiave1": "valorechiave1"} de è di tipo oggetto
+myjson.chiave1 				// => qual è il suo valore?  di che tipo è?Il valore è:valorechiave1 ed è di tipo stringa
+myjson.chiave2 				// => qual è il suo valore?  di che tipo è?il valore è:Undefined visto che non c'è un chiave con questo nome,è di tipo oggetto
+myjson.chiave1.chiave2 		// => qual è il suo valore?  di che tipo è?Il valore è:Undefined,di tipo oggetto
+
+Data la seguente definizione:
+let myjson1={"chiave1": {"chiave2": "valorechiave2"}}
+
+qual è il valore di:
+
+myjson1 						// => qual è il suo valore?  di che tipo è?  Il valore è:{"chiave1": {"chiave2": "valorechiave2"}},di tipo oggetto
+myjson1.chiave1 				// => qual è il suo valore?  di che tipo è?  Il valore è:{"chiave2": "valorechiave2"},di tipo oggetto
+myjson1.chiave2 				// => qual è il suo valore?  di che tipo è?  Il valore è:Undefined,di tipo oggetto
+myjson1.chiave1.chiave2 		// => qual è il suo valore?  di che tipo è?  Il valore è:valorechiave2,di tipo stringa
+
+//-----------------------------------------------------------------Esercizio 6
+6. Solo dopo aver completato l'esercizio precedente,
+vogliamo anche avere l'informazione solo per la materia "italiano" del numero di studenti sufficienti ed insufficienti
+Scrivere una nuova funzione che abbia in input quello che abbiamo a disposizione nell'esercizio 4 (scegliere cosa)
+e in output un json di questo tipo:
+OUTPUT: newjsonOutput = {
+italiano: {"studenti_insuff": <int>, "studenti_suff": <int>}
+}
+Attenzione: newjsonOutput è un json in  cui la chiave "italiano" è a sua volta un json.
+
+il risultato dovrà quindi essere:
+newjsonOutput 				//con valore {"italiano":{"studenti_insuff": 2, "studenti_suff": 3}}
+
+Codice Javascript:
+
+function italiano(jsonInput){
+    let Italiano=[]
+     for(i=0;i!=jsonInput.lenght;i++){
+        Italiano[i].nome=jsonInput[i].studente
+        if(jsonInput[i].italiano>=6){
+            S_suff++
+            Italiano[i].suff=S_suff
+        }
+        else{
+            S_insuff++
+        }
+     }
+Italiano[i].suff=S_suff
+Italiano[i].insuff=S_insuff
+return Italiano
+}
+
