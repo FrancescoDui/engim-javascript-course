@@ -184,8 +184,6 @@ function italiano(jsonInput){
             Italiano[i].insuff=S_insuff
         }
      }
-Italiano[i].suff=S_suff
-Italiano[i].insuff=S_insuff
 return Italiano
 }
 
