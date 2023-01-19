@@ -8,7 +8,7 @@
 2.Conoscere e possedere gli strumenti
 3.input
 4.output
-
+5.Scomporre i sotto problemi?
 
 //-----------------------------------------------------------------Esercizio 1
 1. Indicare se i seguenti statement sono corretti oppure errati.
@@ -17,8 +17,8 @@ int i='1';			Corretto? N		Perchè? Si sta inizializzando una variabile di tipo i
 int j=1;			Corretto? Y		Perchè? Analogamente a quanto visto sopra si stà inizializzando una variabile di tipo numerico intero con un valore numerico intero
 string s=1;			Corretto? N		Perchè? No perchè il tipo stringa ha bisogno degli apici o delle virgolette per essere interpretato come carattere
 string a=j+'1';		Corretto? N		Perchè? No perchè il tipo stringa ha bisogno degli apici o delle virgolette per essere interpretato come carattere
-object o={'1'};		Corretto? N		Perchè? no perchè essendo un oggetto ha bisogno che ad ogni elemento che è contenuto al suo interno sia associata una chiave,in più non è specificato la tipologia di variabile
-object o='s';		Corretto? N		Perchè? Perchè per gli oggetti bisogna utilizzare le parentesi graffe e le chiavi
+object o={'1'};		Corretto? Y	    Perchè? Assegnamento di una variabile,tutti i tipi sono object
+object o='s';		Corretto? Y 	Perchè? Assegnamento di una variabile,tutti i tipi sono object
 
 function string miafun1 (int par1){			Corretto? N		Perchè?La funzione deve restituire un valore di tipo stringa invece restituisce un valore numerico di tipo intero
 	int a=par1;
@@ -50,7 +50,7 @@ string function miafun(ref int par1, string par2){
 int var1 = 1;
 int var2 = miafun(var1, '2');
 print('var1', var1);			// => cosa scrive?Stampa a schermo: var1 12
-print('var2', var2);			// => cosa scrive?Stampa a schermo: var2 2
+print('var2', var2);			// => cosa scrive?Stampa a schermo: var2 122
 
 //-----------------------------------------------------------------Esercizio 3
 3. Scrivere una funzione che accetti in input un array di interi e restituisca in output la somma di tutti gli elementi che sono pari
@@ -106,15 +106,14 @@ let jsonInput=[
     {'id': 1, 'studente': "paperina", 'italiano': 4, 'storia': 6, 'geografia': 8, 'informatica': 8 },
     ]
     let jsonOutput=[]
-    for(i=0;i!=jsonInput.lenght;i++){
+    for(let i=0;i!=jsonInput.lenght;i++){
     console.log(andamento(jsonInput[i],jsonOutput=[i]));
     }
     
     function andamento (jsonInput,jsonOutput){
     jsonOutput.nome=jsonInput.studente
-    controllo(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
     jsonOutput.suff=controllo(jsonInput.italiano,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.storia,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.geografia,jsonOutput.Suff,jsonOutput.InSuff) +controllo(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
-    jsonOutput.insuff=controllo(jsonInput.italiano,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.storia,jsonOutput.Suff,jsonOutput.InSuff) + controllo(jsonInput.geografia,jsonOutput.Suff,jsonOutput.InSuff) +controllo(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
+    jsonOutput.insuff=controllo1(jsonInput.italiano,jsonOutput.Suff,jsonOutput.InSuff) + controllo1(jsonInput.storia,jsonOutput.Suff,jsonOutput.InSuff) + controllo1(jsonInput.geografia,jsonOutput.Suff,jsonOutput.InSuff) +controllo1(jsonInput.informatica,jsonOutput.Suff,jsonOutput.InSuff)
     return jsonOutput
     }
     
@@ -124,10 +123,15 @@ let jsonInput=[
             Suff=1
             ret=Suff
         }
-        else{
-            Insuff=1
+      
+    return ret
+     }
+      function controllo1(materia,Suff=0,Insuff=0){
+        if(materia < 6){
+           Insuff=1
             ret=Insuff
         }
+       
     return ret
      }
 //-----------------------------------------------------------------Esercizio 5
@@ -177,6 +181,7 @@ function italiano(jsonInput){
         }
         else{
             S_insuff++
+            Italiano[i].insuff=S_insuff
         }
      }
 Italiano[i].suff=S_suff
