@@ -1,19 +1,88 @@
-4. Vogliamo gestire una statistica dell'andamento degli studenti di una classe.                                                      |
-Abbiamo a disposizione i dati delle pagelle degli studenti in un formato json come descritto nell'esempio jsonInput.                 |
-Vogliamo in output il resoconto per ogni studente del numero di materie insufficienti e sufficienti (la sufficienza è >= 6).         |
-I voti sono di tipo intero.                                                                                                          |
-Scrivere il diagramma di flusso (anche non completo nei dettagli, l'importante è il flusso di massima).                              |
-Scrivere inoltre in javascript una funzione che accetti in input un array di json definito in jsonInput, e restituisca in output     |
-un nuovo array di json che contenga per ogni elemento dell'array un json con per ogni studente il suo nome, numero di insifficienze, |
-numero di sufficienze                                                                                                                |
---------------------------------------------------------------------------------------|----------------------------------------------|
-INPUT: jsonInput=[                                                                    |                                              |
-{id: 1, studente: "pippo", italiano: 9, storia: 5, geografia: 6, informatica: 8 },    |                                              |
-{id: 1, studente: "pluto", italiano: 4, storia: 2, geografia: 9, informatica: 3 },    |                                              | 
-{id: 1, studente: "paperino", italiano: 6, storia: 9, geografia: 4, informatica: 7 }, |                                              |
-{id: 1, studente: "minnie", italiano: 7, storia: 7, geografia: 8, informatica: 6 },   |                                              |
-{id: 1, studente: "paperina", italiano: 4, storia: 6, geografia: 8, informatica: 8 }, |                                              |
-]                                                                                     |                                              |
-OUTPUT: jsonOutput = [                                                                |                                              |
-{studente: <string>, numero_materie_suff: <int>, numero_materie_insuff: <int>}        |                                              |
---------------------------------------------------------------------------------------|----------------------------------------------|
+|-------------------------------------------------------------------------------------------------------------------------------------|
+|4. Vogliamo gestire una statistica dell'andamento degli studenti di una classe.                                                      |
+|Abbiamo a disposizione i dati delle pagelle degli studenti in un formato json come descritto nell'esempio jsonInput.                 |
+|Vogliamo in output il resoconto per ogni studente del numero di materie insufficienti e sufficienti (la sufficienza è >= 6).         |
+|I voti sono di tipo intero.                                                                                                          |
+|Scrivere il diagramma di flusso (anche non completo nei dettagli, l'importante è il flusso di massima).                              |
+|Scrivere inoltre in javascript una funzione che accetti in input un array di json definito in jsonInput, e restituisca in output     |
+|un nuovo array di json che contenga per ogni elemento dell'array un json con per ogni studente il suo nome, numero di insifficienze, |
+|numero di sufficienze                                                                                                                |
+|--------------------------------------------------------------------------------------|----------------------------------------------|
+|INPUT: jsonInput=[                                                                    |**********************************************|
+|{id: 1, studente: "pippo", italiano: 9, storia: 5, geografia: 6, informatica: 8 },    |//per chi lo trova facile, non utilizzi       |
+|{id: 1, studente: "pluto", italiano: 4, storia: 2, geografia: 9, informatica: 3 },    |il ciclo for ma l'istruzione                  | 
+|{id: 1, studente: "paperino", italiano: 6, storia: 9, geografia: 4, informatica: 7 }, | array.foreach oppure array.map               |
+|{id: 1, studente: "minnie", italiano: 7, storia: 7, geografia: 8, informatica: 6 },   ||(capire la differenza)                       |
+|{id: 1, studente: "paperina", italiano: 4, storia: 6, geografia: 8, informatica: 8 }, |**********************************************|
+|]                                                                                     |                                              |
+|OUTPUT: jsonOutput = [                                                                |                                              |
+|{studente: <string>, numero_materie_suff: <int>, numero_materie_insuff: <int>}        |**********************************************|
+|--------------------------------------------------------------------------------------|----------------------------------------------|
+Nuovo Esempio:
+INPUT: let studenti = [
+	{
+	studente: "pippo", 
+	materie: [
+		{ materia: "italiano", voto: 9},
+		{ materia: "storia", voto: 5},
+		{ materia: "geografia", voto: 6},
+		{ materia: "informatica", voto: 8}	
+	]
+	},
+	{
+	studente: "pluto", 
+	materie: [
+		{ materia: "italiano", voto: 9},
+		{ materia: "storia", voto: 5},
+		{ materia: "geografia", voto: 6},
+		{ materia: "informatica", voto: 8}	
+	]
+	}
+	
+]
+------------------------------------------------------------------------------------------------------------------------------------------
+Scrittura Codice Javascript :
+let studenti = [
+	{
+	studente: "pippo", 
+	materie: [
+		{ materia: "italiano", voto: 9},
+		{ materia: "storia", voto: 5},
+		{ materia: "geografia", voto: 6},
+		{ materia: "informatica", voto: 8}	
+	]
+	},
+	{
+	studente: "pluto", 
+	materie: [
+		{ materia: "italiano", voto: 9},
+		{ materia: "storia", voto: 5},
+		{ materia: "geografia", voto: 6},
+		{ materia: "informatica", voto: 8}	
+	]
+	}
+	
+]
+for(let i=0;i!=studenti.lenght;i++){
+let studentiR=[]
+studentiR[0]=studenti.studente
+studentiR[1]=resoconto(studenti[i].materie)
+console.log(studentiR)
+}
+
+function resoconto(materia){
+    let pagella={}
+    pagella.suf=0
+    pagella.insuf=0
+for(let i=0;i!=materia.lenght;i++){
+    console.log(materia[i])
+    }
+    if(materia[i].voto >= 6){
+        pagella.suf=pagella.suf+1
+    }
+    else{
+        pagella.insuf=pagella.insuf+1
+    }
+}
+return pagella
+}
