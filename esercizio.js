@@ -1,6 +1,9 @@
 
 //Esercizi su GitHub
-//**********************************************************************//
+
+
+//***********************************************************************************************************//
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
 
 // 1. Esercizio scrivi un programma che dica se un numero è pario o dispari
 let numero=20;
@@ -12,8 +15,8 @@ else {
 }
 
 // 2. Scrivi un programma che controlli se un numero è divisibile per 3.
-let numero=17;
-if(numero%3===0){
+let numero1=17;
+if(numero1%3===0){
     console.log("il numero è divisibile per 3")
 }
 else{
@@ -21,8 +24,8 @@ else{
 }
 
 //3. Scrivi un programma che controlli se un numero è divisibile per 3 e per 5.
-let numero = 70;
-if(numero%3===0 && numero%5===0){
+let numero2 = 70;
+if(numero2%3===0 && numero2%5===0){
         console.log("il numero è divisibile sia per 3 che per 5") 
 }
 else{
@@ -68,4 +71,7 @@ if(operatore==="*"){
 }else{
     console.log("non hai scelto un operazione esistente")
 }
-//********************************************************************************************************//
+
+
+//***********************************************************************************************************//
+//$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$//
